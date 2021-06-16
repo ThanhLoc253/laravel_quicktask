@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\ChangeLanguageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => 'locale'], function () {
+    Route::get('change-language/{language}', [ChangeLanguageController::class, 'changeLanguage'])
+        ->name('user.change-language');
+    Route::resource('', CustomersController::class);
 });
