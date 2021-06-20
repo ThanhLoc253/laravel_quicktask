@@ -6,68 +6,89 @@ use App\Models\Customers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RequestCustomer;
 
-class customersController extends Controller
-{
+class CustomersController extends Controller
+{   
+    public function check($id)
+    {
+        $customers = Customers::find($id);
+
+        if (empty($customers)) {
+            return false;
+        } else {
+            return $customers;
+        }
+    }
+
     public function index()
     {
         $customers = Customers::latest()->paginate(config('app.paginate'));
 
         return View('function.index', compact(('customers')));
     }
+
     public function create()
     {
         return View('function.create');
     }
+
     public function store(RequestCustomer $request)
     {
         Customers::create($request->all());
         
-        return redirect()->route('index')
+        return redirect()->route('customers.index')
             ->with('success', trans('message.create_successfully'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $customers = $this->check($id);
+
+        if ($customers) {
+            return View('function.show', compact('customers'));
+        } else {
+            return redirect()->route('customers.index')
+            ->with('danger', trans('message.danger'));
+        } 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $customers = $this->check($id);
+
+        if ($customers) {
+            return View('function.edit', compact('customers'));
+        } else {
+            return redirect()->route('customers.index')
+                ->with('danger', trans('message.danger'));
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(RequestCustomer $request, $id)
+    {   
+        $customers = $this->check($id);
+        if ($customers) {
+            $customers->update($request->all());
+
+            return redirect()->route('customers.index')
+                ->with('success',trans('message.update'));
+        } else {
+            return redirect()->route('customers.index')
+                ->with('danger', trans('message.danger'));
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $customers = $this->check($id);
+
+        if ($customers) {
+            $customers->delete();
+
+            return redirect()->route('customers.index')
+                ->with('success', trans('message.delete'));
+        }else{
+            return redirect()->route('customers.index')
+                ->with('danger', trans('message.danger'));
+        }
     }
 }

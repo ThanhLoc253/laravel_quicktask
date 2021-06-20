@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('style/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
 <body>

@@ -16,5 +16,12 @@ return [
     'create_successfully' => 'Thêm nhân viên thành công',
     'english' => 'Tiếng Anh',
     'vietnam' => 'Tiếng Việt',
-    'required'=> 'Vui long dien vao cho trong'
+    'required'=> 'Vui lòng điền vào chỗ trống',
+    'edit'=>'Chỉnh sửa thông tin nhân viên',
+    'update'=>'Chỉnh sửa thông tin  nhân viên thành công',
+    'delete' => 'Xóa nhân viên thành công',
+    'show' => 'Hiển thị',
+    'deleted' =>'Xóa',
+    'updated' => 'Chỉnh sửa',
+    'danger' => 'Không tồn tại nhân viên này',
 ];
