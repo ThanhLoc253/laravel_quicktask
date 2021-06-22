@@ -7,7 +7,7 @@
             <h2>{{ trans('message.create') }}</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{route('index')}}" title="{{ trans('message.back') }}"> <i class="fas fa-backward "></i> </a>
+            <a class="btn btn-primary" href="{{ route('customers.index') }}" title="{{ trans('message.back') }}"> <i class="fas fa-backward "></i> </a>
         </div>
     </div>
 </div>
@@ -22,7 +22,7 @@
     </ul>
 </div>
 @endif
-<form action="{{ route('index') }}" method="POST">
+<form action="{{ route('customers.index') }}" method="POST">
     @csrf
 
     <div class="row">

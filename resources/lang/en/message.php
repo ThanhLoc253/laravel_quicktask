@@ -16,5 +16,12 @@ return [
     'create_successfully' => 'Create Successfully',
     'english' => 'English',
     'vietnam' => 'Vietnamese',
-    'required' => 'required'
+    'required' => 'required',
+    'edit'=>'Edit profile customer',
+    'update'=>'Update customer successfully',
+    'delete' => 'Delete customer successfully',
+    'show' => 'Show',
+    'deleted' =>'Delete',
+    'updated' => 'Update',
+    'danger' => 'This customer does not exist'
 ];

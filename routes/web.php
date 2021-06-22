@@ -18,5 +18,5 @@ use App\Http\Controllers\ChangeLanguageController;
 Route::group(['middleware' => 'locale'], function () {
     Route::get('change-language/{language}', [ChangeLanguageController::class, 'changeLanguage'])
         ->name('user.change-language');
-    Route::resource('', CustomersController::class);
+    Route::resource('customers', CustomersController::class);
 });

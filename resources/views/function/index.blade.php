@@ -7,7 +7,7 @@
             <h2>{{ trans('message.list') }}</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{route('create')}}" title="Add a Customer"> <i class="fas fa-plus-circle"></i>
+            <a class="btn btn-success" href="{{route('customers.create')}}" title="Add a Customer"> <i class="fas fa-plus-circle"></i>
             </a>
         </div>
     </div>
@@ -15,6 +15,10 @@
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@elseif ($message = Session::get('danger'))
+<div class="alert alert-danger">
     <p>{{ $message }}</p>
 </div>
 @endif
@@ -38,20 +42,21 @@
             <td>{{ $customer->email }}</td>
             <td>{{ $customer->phone }}</td>
             <td>
-                <form action="" method="POST">
+                <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
 
-                    <a href="" title="show">
+                    <a href="{{ route('customers.show',$customer->id) }}" title="{{ trans('message.show') }}">
                         <i class="fas fa-eye text-success  fa-lg"></i>
                     </a>
 
-                    <a href="" title="edit">
+                    <a href="{{ route('customers.edit',$customer->id) }}" title="{{ trans('message.updated') }}">
                         <i class="fas fa-edit  fa-lg"></i>
                     </a>
+                    @csrf
+                    @method('DELETE')
 
-                    <a href="" title="delete">
-                        <i class="fas fa-user-minus fa-lg text-danger"></i>
-                    </a>
-                    
+                    <button class="button_delete" type="submit" title="{{ trans('message.deleted') }}">
+                        <i class="fas fa-trash fa-lg text-danger"></i>
+                    </button>
                 </form>
             </td>
         </tr>
